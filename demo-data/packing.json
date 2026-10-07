@@ -6,8 +6,8 @@
   "sourceUrl": "https://real2sim-eval.github.io/",
   "sourceVideo": "demo-media/packing-source.mp4",
   "trackingVideo": "demo-media/packing-observations.mp4",
-  "baselinePreview": "demo-media/packing-packing-90000-v2-0.mp4",
-  "previewVideo": "demo-media/packing-packing-90000-v2-200.mp4",
+  "baselinePreview": "demo-media/packing-packing-90000-v2-views-v1-0-front.mp4",
+  "previewVideo": "demo-media/packing-packing-90000-v2-views-v1-200-front.mp4",
   "baseline": {
     "springY": 90000
   },
@@ -42,11 +42,11 @@
         0
       ],
       "checkpoint": "packing-90000-v2/iter-0.pth",
-      "previewVideo": "demo-media/packing-packing-90000-v2-0.mp4",
-      "heatmapVideo": "demo-media/packing-packing-90000-v2-0-heat.mp4",
+      "previewVideo": "demo-media/packing-packing-90000-v2-views-v1-0-front.mp4",
+      "heatmapVideo": "demo-media/packing-packing-90000-v2-views-v1-0-front-heat.mp4",
       "previewTrajectory": "xarm7_pack_sloth/episode_000000",
       "previewFrames": 459,
-      "insideBoxFraction": 0.4731738849385908,
+      "insideBoxFraction": 0.5875888817065288,
       "phase": "initial"
     },
     {
@@ -342,11 +342,11 @@
         1486
       ],
       "checkpoint": "packing-90000-v2/iter-200.pth",
-      "previewVideo": "demo-media/packing-packing-90000-v2-200.mp4",
-      "heatmapVideo": "demo-media/packing-packing-90000-v2-200-heat.mp4",
+      "previewVideo": "demo-media/packing-packing-90000-v2-views-v1-200-front.mp4",
+      "heatmapVideo": "demo-media/packing-packing-90000-v2-views-v1-200-front-heat.mp4",
       "previewTrajectory": "xarm7_pack_sloth/episode_000000",
       "previewFrames": 459,
-      "insideBoxFraction": 0.6700064641241111,
+      "insideBoxFraction": 0.9463477698771816,
       "phase": "local"
     }
   ],
@@ -418,5 +418,17 @@
     "dt": 5e-05,
     "fps": 30,
     "substeps": 667
+  },
+  "firstPerson": {
+    "baselineVideo": "demo-media/packing-packing-90000-v2-views-v1-0-wrist.mp4",
+    "calibratedVideo": "demo-media/packing-packing-90000-v2-views-v1-200-wrist.mp4",
+    "baselineHeatmapVideo": "demo-media/packing-packing-90000-v2-views-v1-0-wrist-heat.mp4",
+    "calibratedHeatmapVideo": "demo-media/packing-packing-90000-v2-views-v1-200-wrist-heat.mp4",
+    "runId": "packing-90000-v2",
+    "epoch": 200,
+    "trajectory": "xarm7_pack_sloth/episode_000000",
+    "physicalFrames": 459,
+    "camera": "Official gripper-mounted wrist camera",
+    "sameStateAsFrontVideo": true
   }
 }

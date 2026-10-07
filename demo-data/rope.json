@@ -4,7 +4,7 @@
   "source": "PhysTwin official rope_double_hand case",
   "sourceUrl": "https://github.com/Jianghanxiao/PhysTwin",
   "comparisonVideo": "demo-media/official-rope-comparison.mp4",
-  "previewVideo": "demo-media/rope-investor-90000-v1-200.mp4",
+  "previewVideo": "demo-media/rope-investor-90000-v1-views-v1-200-front.mp4",
   "sourceVideo": "demo-media/rope-rgb.mp4",
   "still": "demo-media/official-rope-still.png",
   "stiffnessFigure": null,
@@ -46,8 +46,8 @@
       ],
       "loss": 0.00010445394134061484,
       "testLoss": 0.00015244981345858833,
-      "previewVideo": "demo-media/rope-investor-90000-v1-0.mp4",
-      "heatmapVideo": "demo-media/rope-investor-90000-v1-0-heat.mp4",
+      "previewVideo": "demo-media/rope-investor-90000-v1-views-v1-0-front.mp4",
+      "heatmapVideo": "demo-media/rope-investor-90000-v1-views-v1-0-front-heat.mp4",
       "checkpoint": "demo_runs/rope_double_hand/investor-90000-v1/iter-0.pth",
       "springMean": 90000.015625,
       "softenedFraction": 0.0
@@ -316,8 +316,8 @@
       ],
       "loss": 4.296433435924907e-05,
       "testLoss": 6.298965752193908e-05,
-      "previewVideo": "demo-media/rope-investor-90000-v1-200.mp4",
-      "heatmapVideo": "demo-media/rope-investor-90000-v1-200-heat.mp4",
+      "previewVideo": "demo-media/rope-investor-90000-v1-views-v1-200-front.mp4",
+      "heatmapVideo": "demo-media/rope-investor-90000-v1-views-v1-200-front-heat.mp4",
       "checkpoint": "demo_runs/rope_double_hand/investor-90000-v1/iter-200.pth",
       "springMean": 80764.2421875,
       "softenedFraction": 0.14332546293735504
@@ -332,7 +332,7 @@
   "runId": "investor-90000-v1",
   "trackingVideo": "demo-media/official-rope-gt.mp4",
   "calibratedEpoch": 200,
-  "baselinePreview": "demo-media/rope-investor-90000-v1-0.mp4",
+  "baselinePreview": "demo-media/rope-investor-90000-v1-views-v1-0-front.mp4",
   "split": {
     "frame_len": 264,
     "train": [
@@ -343,5 +343,27 @@
       184,
       264
     ]
+  },
+  "firstPerson": {
+    "views": {
+      "left": {
+        "baselineVideo": "demo-media/rope-investor-90000-v1-views-v1-0-left.mp4",
+        "calibratedVideo": "demo-media/rope-investor-90000-v1-views-v1-200-left.mp4",
+        "baselineHeatmapVideo": "demo-media/rope-investor-90000-v1-views-v1-0-left-heat.mp4",
+        "calibratedHeatmapVideo": "demo-media/rope-investor-90000-v1-views-v1-200-left-heat.mp4"
+      },
+      "right": {
+        "baselineVideo": "demo-media/rope-investor-90000-v1-views-v1-0-right.mp4",
+        "calibratedVideo": "demo-media/rope-investor-90000-v1-views-v1-200-right.mp4",
+        "baselineHeatmapVideo": "demo-media/rope-investor-90000-v1-views-v1-0-right-heat.mp4",
+        "calibratedHeatmapVideo": "demo-media/rope-investor-90000-v1-views-v1-200-right-heat.mp4"
+      }
+    },
+    "runId": "investor-90000-v1",
+    "epoch": 200,
+    "trajectory": "rope_double_hand observed controllers",
+    "physicalFrames": 264,
+    "camera": "Virtual cameras attached to left/right translation controls; neutral backdrop",
+    "sameStateAsFrontVideo": true
   }
 }

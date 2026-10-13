@@ -430,5 +430,6 @@
     "physicalFrames": 459,
     "camera": "Official gripper-mounted wrist camera",
     "sameStateAsFrontVideo": true
-  }
+  },
+  "learning": "learning/packing/manifest.json"
 }

@@ -10,8 +10,10 @@ the GPU service is available; recorded learning can be explored while offline.
 The Ishmael experience connects observed deformation, prediction differences,
 actual saved response-parameter updates and synchronized interactive validation.
 Optimization playback uses genuine offline checkpoints and does not train on
-visitor clicks. Material observations and packing verification are separate
-sequences. The current exhibit focuses on visual deformation, one part of the
+visitor clicks. Step 2 restores the original bear-stretching RGB, tracked motion
+and calibration run. The interactive packing example has separate observations,
+checkpoints and models: its model was not trained by the Step 2 video.
+The current exhibit focuses on visual deformation, one part of the
 broader world physics model direction.
 
 Research assets and methods: [PhysTwin](https://github.com/Jianghanxiao/PhysTwin)

@@ -7,14 +7,16 @@ media only. GPU simulation, model checkpoints and application source remain
 outside this publishing repository. Live interaction connects to RunPod when
 the GPU service is available; recorded learning can be explored while offline.
 
-The Ishmael experience connects observed deformation, prediction differences,
-actual saved response-parameter updates and synchronized interactive validation.
-Optimization playback uses genuine offline checkpoints and does not train on
-visitor clicks. Step 2 restores the original bear-stretching RGB, tracked motion
-and calibration run. The interactive packing example has separate observations,
-checkpoints and models: its model was not trained by the Step 2 video.
-The current exhibit focuses on visual deformation, one part of the
-broader world physics model direction.
+The Chinese-first exhibit has two stages: an interactive neural learning
+architecture, followed by synchronized live physical-response validation.
+The learning exhibit runs a real simplified browser-local Encoder/Decoder
+trajectory-reconstruction experiment. It visualizes gradients through a fixed
+graph operator; it is not a full LPM/PDE system or a large-model checkpoint.
+Architecture display samples do not represent actual parameter scale.
+The live toy-packing and rope worlds use independent previously calibrated
+physical assets, not outputs of the Stage 1 neural network. RGB, observations,
+source identifiers, model records and required notices remain attributable.
+The previous scalar-calibration playback is no longer the main experience.
 
 Research assets and methods: [PhysTwin](https://github.com/Jianghanxiao/PhysTwin)
 and [Real2Sim-Eval](https://real2sim-eval.github.io/).

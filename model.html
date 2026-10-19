@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Ishmael 世界物理模型</title>
+    <script type="module" crossorigin src="/genesis-demo/assets/model-Bq-Yzdv0.js"></script>
+    <link rel="modulepreload" crossorigin href="/genesis-demo/assets/modulepreload-polyfill-B5Qt9EMX.js">
+    <link rel="stylesheet" crossorigin href="/genesis-demo/assets/model-q2tFaDCy.css">
+  </head>
+  <body>
+    <div id="ishmael-lpm-backprop">
+      <header class="ig-header">
+        <div>
+          <span class="ig-brand">ISHMAEL</span
+          ><span class="ig-name">世界物理模型 · Learning Architecture</span>
+        </div>
+        <span class="ig-local">LOCAL PREVIEW</span>
+      </header>
+      <div class="ig-top">
+        <div class="ig-scene">
+          <button data-scene="bear" aria-pressed="true">熊玩偶</button
+          ><button data-scene="rope" aria-pressed="false">绳子</button>
+        </div>
+        <div class="ig-scope">
+          <span>统一架构示意 · 真实实验驱动</span><span>物理算子内嵌</span>
+        </div>
+      </div>
+      <div class="ig-stage">
+        <canvas
+          id="ig-canvas"
+          aria-label="集成视频观测、Encoder、内嵌物理算子的 Decoder 和误差回传的三维模型"
+        ></canvas>
+        <div class="ig-focus">
+          <button data-focus="all" aria-pressed="true">全景</button
+          ><button data-focus="observation">观测点</button
+          ><button data-focus="encoder">Encoder</button
+          ><button data-focus="state">隐物理层</button
+          ><button data-focus="decoder">Decoder 内部</button
+          ><button data-focus="error">残差</button
+          ><button id="ig-reset-camera">复位视角</button>
+        </div>
+        <div id="ig-phase-label" class="ig-phase-label">
+          <span id="ig-phase-tag">01 / OBSERVE</span
+          ><strong id="ig-phase-title">从像素轨迹，到物理状态。</strong>
+        </div>
+        <div id="ig-readout" class="ig-readout" hidden>
+          <span id="ig-readout-title">权重</span
+          ><strong id="ig-readout-value"></strong
+          ><span id="ig-readout-gradient"></span
+          ><button id="ig-dismiss" aria-label="关闭权重详情">关闭</button>
+        </div>
+        <div class="ig-scene-legend">
+          <span><i class="ig-cyan"></i>观测点</span
+          ><span><i class="ig-blue"></i>预测点</span
+          ><span><i class="ig-orange"></i>误差回传</span>
+        </div>
+        <div class="ig-stage-hint">拖动旋转 · 滚轮缩放</div>
+        <div
+          id="ig-loading"
+          role="status"
+          style="position: absolute; left: 20px; top: 48%; color: #a1b2c7"
+        >
+          正在载入三维计算回路…
+        </div>
+        <div id="ig-error" role="alert" hidden>
+          三维视图暂时无法加载。请检查网络后重新打开预览。
+        </div>
+        <video
+          id="ig-video"
+          muted
+          playsinline
+          preload="auto"
+          hidden
+          aria-label="真实观测视频源"
+        ></video>
+      </div>
+      <div class="ig-narration" aria-live="polite">
+        <span id="ig-summary">同一场景中查看观测、预测与网络更新。</span
+        ><span id="ig-steps">更新 0</span>
+      </div>
+      <div id="ig-reverse" class="ig-reverse" hidden>
+        <div class="ig-reverse-stages" aria-label="梯度回传路径">
+          <span data-reverse="0">视频残差</span><span aria-hidden="true">→</span
+          ><span data-reverse="1">内嵌算子</span
+          ><span aria-hidden="true">→</span><span data-reverse="2">Decoder</span
+          ><span aria-hidden="true">→</span
+          ><span data-reverse="3">Encoder</span>
+        </div>
+        <label for="ig-reverse-range"
+          >反传慢放 <output id="ig-reverse-status">视频残差 · 0%</output></label
+        ><input
+          id="ig-reverse-range"
+          aria-label="反传进度"
+          type="range"
+          min="0"
+          max="1000"
+          step="1"
+          value="0"
+        />
+      </div>
+      <nav class="ig-phases" aria-label="训练流程">
+        <button data-phase="0" aria-current="step">01 观测</button
+        ><button data-phase="1">02 编码</button
+        ><button data-phase="2">03 物理预测</button
+        ><button data-phase="3">04 形成误差</button
+        ><button data-phase="4">05 梯度回传</button
+        ><button data-phase="5">06 更新网络</button>
+      </nav>
+      <div class="ig-controls">
+        <div>
+          <button id="ig-trace" class="ig-primary">追踪一次反传</button
+          ><button id="ig-play">播放学习闭环</button
+          ><button id="ig-next">单步前进</button
+          ><button id="ig-train">训练 40 步</button
+          ><button id="ig-reset">重置实验</button>
+        </div>
+        <label
+          >速度
+          <select id="ig-speed">
+            <option value="1">1×</option>
+            <option value="2">2×</option>
+            <option value=".5">0.5×</option>
+          </select></label
+        >
+      </div>
+      <div class="ig-video-controls">
+        <button id="ig-video-play">播放视频</button
+        ><label class="ig-time" for="ig-frame"
+          >视频 <output id="ig-time">3.20 s</output></label
+        ><input
+          id="ig-frame"
+          type="range"
+          min="0"
+          max="191"
+          step="1"
+          value="96"
+          aria-label="视频帧"
+        /><label
+          >跟踪点
+          <select id="ig-point" aria-label="选择跟踪点"></select></label
+        ><label class="ig-check"
+          ><input id="ig-initial" type="checkbox" />初始预测</label
+        ><label
+          >相对强度
+          <select id="ig-field">
+            <option value="auto">跟随流程</option>
+            <option value="weight">权重结构</option>
+            <option value="gradient">梯度分布</option>
+            <option value="update">累计更新</option>
+          </select></label
+        ><label class="ig-check"
+          ><input id="ig-density" type="checkbox" checked />连接流</label
+        >
+      </div>
+      <details class="ig-details">
+        <summary>实验范围与来源</summary>
+        <div>
+          统一网络的颜色与分区变化由真实轨迹重建实验驱动：184
+          个训练权重映射到扩展架构的空间采样中，一个权重可对应多个显示点。显示点与连线数量不代表实际参数量或已实现的大模型。权重纹理、梯度分布、更新历史为真实计算；颜色按当前数值范围归一化。隐物理状态面板展示由两个无量纲状态推导的
+          24×24 响应耦合矩阵，并非新增了 576
+          个独立物理参数。累计更新视图显示相对初始响应的变化，梯度视图显示响应对
+          κ 的敏感度；颜色仅表示相对强度。Decoder 内的固定图拉普拉斯 L 以 (I +
+          κL)u = f 演示内嵌物理算子的角色；这不是完整材料 PDE。κ、g
+          为无量纲演示状态。梯度通过伴随求解回到两个可学习网络，L
+          本身不更新。Encoder 使用最初 0.10
+          秒的观测摘要；当前帧观测用于计算重建损失，未用于未来预测评测。视频来自现有
+          PhysTwin
+          熊玩偶与绳子材料，与装箱校准模型独立。反传亮起顺序是计算依赖关系的慢放，并非运行耗时遥测；梯度由全部有效点计算。更新前后使用同一帧真实预测，局部放大仅改变显示比例，不保证每个点或每次更新都改善。所有训练在本地浏览器运行，无需
+          RunPod。
+        </div>
+      </details>
+    </div>
+
+  </body>
+</html>
